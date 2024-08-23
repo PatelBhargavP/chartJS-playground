@@ -2,15 +2,15 @@ import {Chart, plugins, Tooltip} from 'chart.js/auto'
 
 (async function () {
     const data = {
-        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+        labels: ['Sprint 1', 'Sprint 2', 'Sprint 3', 'Sprint 4', 'Sprint 5', 'Sprint 6', 'Sprint 7'],
         datasets: [
             {
                 label: 'Actual task situations',
                 data: [6, 7, 5, 3, 2, 1, 1],
                 backgroundColor: 'rgba(255, 26, 104, 0.2)',
                 borderColor: 'rgba(255, 26, 104, 1)',
-                borderWidth: 0,
-                fill: true,
+                // borderWidth: 0,
+                // fill: true,
                 tasks: [0 , 1, -1, 0, 0, 0]
             },
             {
@@ -18,14 +18,18 @@ import {Chart, plugins, Tooltip} from 'chart.js/auto'
                 data: [7, 6, 5, 4, 3, 0, 0],
                 backgroundColor: 'rgba(0, 0, 0, 0.2)',
                 borderColor: 'rgba(0, 0, 0, 1)',
-                borderWidth: 1
+                // borderWidth: 1,
+                // pointRadius: 0,
+                // hitRadius: 0
             },
             {
                 label: 'Total tasks',
                 data: [7, 8, 7, 7, 7, 7, 7],
                 backgroundColor: 'yellow',
                 borderColor: 'yellow',
-                borderWidth: 1
+                // borderWidth: 1,
+                // pointRadius: 0,
+                // hitRadius: 0
             }
         ]
     };
@@ -43,6 +47,7 @@ import {Chart, plugins, Tooltip} from 'chart.js/auto'
                 if(task !== 0) {
                     ctx.beginPath();
                     ctx.fillStyle = 'white';
+                    // ctx.arc(x, y, radius, angleStart, angleEnd, false)
                     ctx.arc(
                         chart.getDatasetMeta(0).data[index].x + segmentWidth,
                         y.getPixelForValue(1),
@@ -67,7 +72,7 @@ import {Chart, plugins, Tooltip} from 'chart.js/auto'
 
     // config 
     const config = {
-        type: 'line',
+        type: 'bar',
         data,
         options: {
             interaction: {
@@ -89,12 +94,14 @@ import {Chart, plugins, Tooltip} from 'chart.js/auto'
             },
             scales: {
                 x: {
+                    stacked: true,
                     title: {
                         display: true,
-                        text: 'Timeline / Days'
+                        text: 'Sprints'
                     },
                 },
                 y: {
+                    stacked: true,
                     title: {
                         display: true,
                         text: 'Tasks'
